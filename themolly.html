@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro to FreeCAD for Beginners</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #333333;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+            }
+            a {
+                color: #bb86fc;
+            }
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        @media (prefers-color-scheme: dark) {
+            h1, h2, h3 {
+                color: #cfcfcf;
+            }
+        }
+        pre, code {
+            background: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+        @media (prefers-color-scheme: dark) {
+            pre, code {
+                background: #333333;
+            }
+        }
+        blockquote {
+            border-left: 4px solid #ddd;
+            padding-left: 20px;
+            margin-left: 0;
+            color: #666;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    	<img src="watmali.jpg"/>
+        <h1>Introduction to the Wamali for Complete Beginners</h1>
+        <p><em>A quick guide to get you navigating FreeCAD and understanding the basics. We'll cover the essentials step-by-step, then you can apply them to your example document. Last updated: December 25, 2025</em></p>
+        <h2>What is the Wamali?</h2>
+        <p>"the wamali" is sort of a silly working title I gave a project several years ago. the name, properly "Beta Wamali", is a tongue-in-cheek phoneticization of the Burmese phrase, approximately in better phonetics, "bae toa ma lae" or "where are you going" (colloquially used across the region as a phrase more like "what's up" than a serious inquisition).</p>
+        <p>The project itself is an adaptation of the FGC-9 to be properly parametric, and with a different barrel and bolt system, intended to be made from common commercial fastener components from a hardware store or similar.  Importantly, since different places (and even the same factory at different times) produces the same hardware in different technical dimensions across the less critical features, this is a limiting factor on parts fitment, so I made the wamali adjustable in the complete sense of "could be easily adjusted, from a few points of control, to make the whole design adapt to many possible hardware inputs of construction", swapping between some substantial difference like metric vs imperial parts becomes simply a matter of measuring the size of the new parts, making the handfull of necessary adjustments, and proceeding from there to exporting and printing the relevant new parts for the new design.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>1. What is FreeCAD?</h2>
+            <p>FreeCAD is a free, open-source parametric 3D CAD (Computer-Aided Design) modeler. It's great for designing mechanical parts, architecture, or even 3D printing models. It runs on Windows, macOS, and Linux.</p>
+            <p>To get started:</p>
+            <ul>
+                <li>Download and install FreeCAD from the official website: <a href="https://www.freecad.org/" target="_blank">freecad.org</a>.</li>
+                <li>Launch the application. You'll see a welcome screen with options to create a new document or open existing ones.</li>
+            </ul>
+            <blockquote>Note: FreeCAD has a modular structure with "workbenches" for different kinds of modelling. We'll dive into that soon.</blockquote>
+        </section>
+
+        <section>
+            <h2>2. Creating a New Document</h2>
+            <p>Once FreeCAD is open:</p>
+            <ol>
+                <li>Go to <strong>File > New</strong> or click the "New" icon in the toolbar (it looks like a blank page).</li>
+                <li>This creates a new, empty document. You'll see a 3D viewport in the center, a Combo View panel on the left (with Model and Tasks tabs), and various toolbars at the top.</li>
+                <li>Save your document early: <strong>File > Save As</strong> and choose a location with the .FCStd extension.</li>
+            </ol>
+            <p>Pro Tip: FreeCAD documents are self-contained files that store all your models, sketches, and data.</p>
+        </section>
+
+        <section>
+            <h2>3. Workbenches: Focusing on Part Design</h2>
+            <img src="introtopartdesign.png"/>
+            <p>FreeCAD uses "workbenches" to group tools for specific workflows. The default is the Start workbench, but for modeling, we'll switch to others.</p>
+            <ul>
+                <li>To switch workbenches: Use the dropdown menu at the top (next to the toolbar icons) or go to <strong>View > Workbench</strong>.</li>
+                <li>Select <strong>Part Design</strong> for creating solid parts using sketches and features. This is ideal for beginners in mechanical design.</li>
+                <li>Other useful workbenches:
+                    <ul>
+                        <li><strong>Sketcher</strong>: Often used within Part Design for 2D sketching.</li>
+                        <li><strong>Part</strong>: For basic geometric shapes without parametric history.</li>
+                        <li><strong>Draft</strong>: For 2D drafting and simple shapes.</li>
+                        <li><strong>TechDraw</strong>: For creating technical drawings from your 3D models.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>Switch back and forth as needed—tools from one workbench might be available in others.</p>
+        </section>
+
+        <section>
+            <h2>4. Aside: Understanding Tasks and Task Locking</h2>
+            <img src="tasklocking.png"/>
+            <p>In FreeCAD, many operations open a "Task" panel on the left (in the Combo View). This is where you input parameters, like dimensions or options. In the example screenshot, you see that "create sketch" is grayed out from the top panel of the screen, because the "placement" task is active in the left "tasks" panel.</p>
+            <ul>
+                <li><strong>Tasks</strong>: These are modal dialogs that guide you through a process. For example, when creating a sketch, the Task panel shows constraints and tools.</li>
+                <li><strong>Task Locking</strong>: While a task is active, some other actions are locked to prevent conflicts. To exit a task, click "Close" or "OK" in the panel, or press Esc.</li>
+                <li>If things feel stuck, check if a task is open—it's a common beginner hurdle!</li>
+            </ul>
+            <blockquote>Remember: FreeCAD is parametric, meaning changes to early steps (like sketches) propagate to later features. This is powerful but requires careful planning.</blockquote>
+        </section>
+
+        <section>
+            <h2>5. Introduction to Sketches</h2>
+            <img src="introtosketches.png"/>
+            <p>Sketches are the foundation of parametric modeling in FreeCAD. They're 2D drawings used to define 3D features.</p>
+            <p>The example sketch shows a couple of example features worth noting. There is a green circle (meaning "the circle is fully constrained, and couldn't be resized or repositioned because of the constraints that define its' size and position), with the center at the two lines in the middle of every sketch. Think of these two lines as "the zero lines" on a cartesian number chart, the same as you learned to chart a graph with at school. The point where the lines cross is "the middle" of the sketch, and if you use the placement operations outside of the sketch, any rotations of it will rotate around that middle.  On the left side, you can see every "element" of the sketch, including a list of "Constraints" in red (with two constraints, one defining the center of the circle as being the same point as the center of the document, and another constraining the size of that circle).  Beneath the constraints, there is a section of "Construction" ("actually constructed geometry") and "Reference" geometry ("logical geometry that is not constructed, such as lines along which actual constructed features are placed").</p>
+            <ol>
+                <li>In Part Design workbench, click <strong>Create Body</strong> (if not already done—bodies organize features).</li>
+                <li>Then, click <strong>Create Sketch</strong>. Choose a plane (e.g., XY-plane) to sketch on.</li>
+                <li>In Sketcher mode:
+                    <ul>
+                        <li>Draw shapes using tools like Line, Circle, Rectangle.</li>
+                        <li><strong>Construction Geometry</strong>: Toggle with the blue icon— these are helper lines (dashed) that aren't part of the final shape but aid in positioning.</li>
+                        <li><strong>Reference Geometry</strong>: Similar to construction, but often refers to external elements like axes or points from other objects.</li>
+                        <li><strong>Constraints</strong>: These define relationships. Use Horizontal/Vertical for alignment, Coincident for points to touch, Dimensional for lengths/angles. Fully constrain your sketch (turns green) to make it parametric and stable.</li>
+                    </ul>
+                </li>
+                <li>Close the sketch when done.</li>
+            </ol>
+            <p>Example: Sketch a rectangle, add dimensional constraints (e.g., width=50mm, height=30mm), and ensure it's fully constrained.</p>
+        </section>
+
+        <section>
+            <h2>6. Part Design Operations Based on Sketches</h2>
+            <img src="pdtools.png"/>
+            <p>Once you have a sketch, apply 3D operations:</p>
+            <ul>
+                <li><strong>Pad</strong>: Extrude the sketch into a solid (e.g., turn a rectangle into a box).</li>
+                <li><strong>Pocket</strong>: Cut out material based on the sketch.</li>
+                <li><strong>Revolve</strong>: Rotate the sketch around an axis to create cylindrical shapes.</li>
+                <li><strong>Groove</strong>: Like pocket but revolved.</li>
+                <li><strong>Logic</strong>: Mirror for symmetry, arrange rows of identical operations in sequence, arrange operations in a circle, or across other geomtric progressions.</li>
+                <li><strong>Dressing Operations</strong>: chamfers and radiuses in freecad are treated as a "dressing" like an icing to a cake, that depend on a cake underneath. Because of this dependence, they tend to create conflicting behaviors that new users find unpredictable.
+            </ul>
+            <p>These build a "feature tree" in the Model tab—double-click to edit any step.</p>
+        </section>
+
+        <section>
+            <h2>7. Placement Editor and Function Editing Tools</h2>
+            <img src="placement.png"/>
+            <p>To position objects precisely:</p>
+            <ul>
+                <li><strong>Placement Editor</strong>: Select an object (sketch, body, or feature) in the Model tree. In the Property View (bottom of Combo View), under "Placement," click the ellipsis (...) to open the editor.
+                    <ul>
+                        <li>Adjust Position (X,Y,Z) and Rotation (Axis and Angle, or Euler angles).</li>
+                        <li>Use for moving sketches or bodies relative to each other.</li>
+                    </ul>
+                </li>
+                <li><strong>Function Editing Tools</strong>: For advanced relations, use expressions. In properties, click the blue "f(x)" icon next to a value.
+                <img src="fnstraints2.png"/>
+                    <ul>
+                        <li>Once you click this, you are presented with a text box, allowing you to link to other parameters or do arithmetic operations on data from them, e.g., set a sketch dimension to "Body001.Pad.Length / 2".<img src="fnstraints4.png"/></li>
+                        <li>This creates dependencies between objects.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>To arrange sketches/bodies: Create attachments (e.g., attach a sketch to a face of another body) or use placements to align them. For multi-body designs, use Assembly workbench (if installed) for more complex relations.</p>
+        </section>
+
+        <section>
+            <h1>Next Steps: Tuning your Wamali</h1>
+            <p>With these basics, you're ready to explore your specific Wamali document. Open it, switch to Part Design, inspect the Model tree, edit sketches, and adjust placements as needed. you SHOULD be able to safely move the "Part" bodies, which have a yellow staircase icon- but if you move individual sketches, especially in "parent" geometry that derivitive operations are based on, be prepared to see CAD model errors!</p>
+        </section>
+        
+                <section>
+            <h2>Step 8: Tuning your Wamali FILE</h2>
+            <img src="oal_with_filetree.png"/>
+            <p>The whole point is to make your personal wamali fit your personal hardware store. To that end, there is a "fitment jig" model, in the top center of this image with many smaller circular and hexagonal and etc holes cut out of it.  This is used to match what you are attempting to print, with what you can source from the hardware store.</p>
+            <p>There are two "Sketches" that define all of the derived attributes of the Wamali. (OK, there's sort of 3.) The two you primarily need to be concerned with, at this stage in the Alpha process, are "Carrier XY definitions" and "Carrier YZ Definitions", in the "carrier pipe" body in the "action" assembly.</p>
+            <p>the "Carrier XY" defines "the size and relationship of everything in the gun, as viewed from the front."</p>
+            <p>the "Carrier YZ" defines "the size and relationship of everything in the gun, as viewed from the top."</p>
+            <img src="fnstraints1.png"/>
+            <img src="fnstraints3.png"/>
+            <img src="fnstraints4.png"/>
+            <p><em>It's important to note that in these sketches, almost all of the geometry is "reference" geometry- dotted blue lines by default- and there are ALSO "reference constraints", which appear blue by default in FreeCAD, as well as "functional constraints", constraints derived by logic, which appear orange.  For the constraints you want to interact with, they are almost always the ones in RED, containing a number measurement and a name when you double click them to open them.</em></p>
+            <h3>IF YOU END UP HERE REPEATEDLY, KEEP A NOTEPAD THAT RECORDS WHAT YOU'VE TRIED AND HOW IT WORKED.</h3>
+        </section>
+                <section>
+            <h2>Step 9: Tuning your Wamali PRINTS- STAGE 1</h2>
+            <p>Printing the Wamali is intended to be <em>extremely easy</em>. it breaks into lego segments that all have a specific job (don't combine them into single monolith printed bodies, generally, although with the occasional exception possible)</p>
+            <p><em>(pardon the old graphics from a prior test print of the wamali being used to demonstrate suitable orientations!)</em></p>
+            <img src="prothro1.png"/>
+            <p>Obviously, most things are simply put on a flat face and their lengths are printed up as a solid vertical structure that shape. In a couple visible exceptions (the tail piece, the spring guide, etc) there are different considerations. in the tail piece, the layer lines going at 45 degrees are intended to add an additional degree of reinforcement, attaching the upper to the lower with the greatest possible strength orientation. (there's also hole, so a single wood screw- sunk in from the top, as you'd hold the gun- holds all these layers together after printing, at the rear of the gun.)</p>
+            <img src="prothro2.png"/>
+            <img src="prothro3.png"/>
+            <img src="prothro4.png"/>
+            <p>This particular shot shows the spring guide the most clearly: this is the "print preview" view, showing the orientation, but <em>not showing the supports that should be under it during printing</em>.  Also note, the ejector block in this print preview is oriented on one of the flat faces that still gives it full circumferencial strength, but not the normal intended orientation as intended-which is flat on its' back, with some stringing accepted in the bridging in its' interior cavities.</p>
+        </section>
+                <section>
+            <h2>Next Steps: Barrel Making</h2>
+            <img src="ecm1.png"/>
+            <p>This is essentially "conventional barrel making". Given the difficulty of this task, it has discouraged many people from trying, however the premise is simple:  Barrels are conventionally drilled by <em>rotating the barrel around the hole you want to drill through it</em>. Once you understand this premise, you understand that, if you could attach the barrel to the drill, you could center the drill point on the only center it turned around the axis of- the hole you want to drill (or, rather, before that hole exists, the axis of alignment along which the bar you intend to drill spins).</p>
+            <p></p>
+        </section>
+        
+        
+    </main>
+
+    <footer>
+        <p>Wamali FreeCAD Intro Guide • Created with ♥ using basic HTML • Feel free to edit and expand!</p>
+    </footer>
+</body>
+</html>
+
+
